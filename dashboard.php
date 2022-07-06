@@ -3,6 +3,11 @@
 <?php require_once('connections/dbconnetion.php'); ?>
 <?php require_once('components/header.php'); ?>
 
+<?php if (!isset($_SESSION['id'])) {
+    header("Location: login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
