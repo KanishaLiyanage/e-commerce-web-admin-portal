@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-
 <?php require_once('connections/dbconnetion.php'); ?>
 
 <?php
@@ -21,7 +20,7 @@ if (isset($_POST['submit'])) {
             $admin = mysqli_fetch_assoc($resultset);
             $_SESSION['id'] = $admin['admin_id'];
             $_SESSION['username'] = $admin['admin_user_name'];
-            header("Location: dashboard.php/");
+            header("Location: dashboard.php");
         } else {
             echo "Invalid email or password!";
         }
@@ -43,6 +42,11 @@ if (isset($_POST['submit'])) {
 <body>
     <h1>Login as Admin</h1>
     <form action="login.php" method="post" autocomplete="off">
+        <?php 
+        if(isset($_GET['logout'])){
+            echo '<p class="infomsg"> You have successfuly logout from the system.</p>';
+        }
+         ?>
         Email: <input type="email" name="admin_mail" maxlength="50" autocomplete="false" required>
         <br>
         Password: <input type="password" name="admin_pw" maxlength="20" autocomplete="false" required>
