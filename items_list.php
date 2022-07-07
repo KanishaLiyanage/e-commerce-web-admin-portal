@@ -28,7 +28,7 @@ if ($products) {
         $product_list .= "<td> {$product['purchases']} </td>";
         $product_list .= "<td> {$product['ratings']} </td>";
         $product_list .= "<td> <a href=\"item.php?item_id={$product['product_id']}\"> go to this product </a> </td>";
-        $product_list .= "<td> <a href=\"delete_item.php?item_id={$product['product_id']}\"> Delete </a> </td>";
+        $product_list .= "<td> <a href=\"delete_item.php?item_id={$product['product_id']}\" onclick = \"return confirm('Are you sure to delete?');\"> Delete </a> </td>";
         //item_id is the parameter passing linked page
         $product_list .= "</tr>";
     }

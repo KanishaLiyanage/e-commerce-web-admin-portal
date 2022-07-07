@@ -21,7 +21,7 @@ if ($users) {
         $user_list .= "<td> {$user['email']} </td>";
         $user_list .= "<td> {$user['last_login']} </td>";
         $user_list .= "<td> <a href=\"user_profile.php?user_id={$user['customer_id']}\"> Go to profile </a> </td>";
-        $user_list .= "<td> <a href=\"delete_user.php?user_id={$user['customer_id']}\"> Delete </a> </td>";
+        $user_list .= "<td> <a href=\"delete_user.php?user_id={$user['customer_id']}\"onclick = \"return confirm('Are you sure to delete?');\"> Delete </a> </td>";
         $user_list .= "</tr>";
     }
 } else {
