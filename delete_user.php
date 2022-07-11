@@ -16,6 +16,7 @@ if (!isset($_SESSION['id'])) {
         } else {
             header('Location: users.php?error=user_delete_failed');
         }
+
     } else {
         header('Location: users.php');
     }

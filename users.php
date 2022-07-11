@@ -15,12 +15,13 @@ $users = mysqli_query($connection, $query);
 
 if ($users) {
     while ($user = mysqli_fetch_assoc(($users))) {
+        $_GET['u_id'] = $user['customer_id'];
         $user_list .= "<tr>";
         $user_list .= "<td> {$user['customer_id']} </td>";
         $user_list .= "<td> {$user['username']} </td>";
         $user_list .= "<td> {$user['email']} </td>";
         $user_list .= "<td> {$user['last_login']} </td>";
-        $user_list .= "<td> <a href=\"user_profile.php?user_id={$user['customer_id']}\"> Go to profile </a> </td>";
+        $user_list .= "<td> <a href=\"user_profile.php?user_id={$_GET['u_id']}\"> Go to profile </a> </td>";
         $user_list .= "<td> <a href=\"delete_user.php?user_id={$user['customer_id']}\"onclick = \"return confirm('Are you sure to delete?');\"> Delete </a> </td>";
         $user_list .= "</tr>";
     }
@@ -37,7 +38,7 @@ if ($users) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Customers</title>
 </head>
 
 <body>
