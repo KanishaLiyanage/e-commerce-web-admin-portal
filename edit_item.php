@@ -8,16 +8,15 @@ require_once('components/header.php');
 
 <?php
 
-if (!isset($_SESSION['id'])) {
+$id = "";
 
+if (!isset($_SESSION['id'])) {
     header('Location: login.php');
 } else {
-
     if (isset($_GET['item_id'])) {
-
-        echo "Item ID Passed!";
+        echo "Item ID Passed! ".$_GET['item_id'];
+        $id = $_GET['item_id'];
     } else {
-
         echo "Error!";
     }
 }
@@ -28,17 +27,24 @@ if (!isset($_SESSION['id'])) {
 
 if (isset($_POST['update'])) {
 
-    $id = mysqli_real_escape_string($connection, $_GET['item_id']);
+    $p_id = mysqli_real_escape_string($connection, $_POST['id']);
     $name = mysqli_real_escape_string($connection, $_POST['name']);
+    $brand = mysqli_real_escape_string($connection, $_POST['brand']);
+    $price = mysqli_real_escape_string($connection, $_POST['price']);
+    $desc = mysqli_real_escape_string($connection, $_POST['desc']);
+    $qty = mysqli_real_escape_string($connection, $_POST['qty']);
+    $img = mysqli_real_escape_string($connection, $_POST['img']);
 
-    $query = "UPDATE products SET product_name = '{$name}' WHERE product_id = '{$id}' LIMIT 1";
+    $query = "UPDATE products SET product_brand = '{$brand}', product_name = '{$name}', price = '{$price}', product_description = '{$desc}', qty = '{$qty}', product_img = '{$img}'
+              WHERE product_id = '{$p_id}' LIMIT 1";
 
     $result = mysqli_query($connection, $query);
 
     if ($result) {
-        header("location: items_list.php");
+       header("location: items_list.php?item_updated=true");
+       echo "Item ID: ".$p_id;
     }else{
-        echo "Failed to add records!";
+        echo "Failed to update records!";
     }
 }
 
@@ -71,6 +77,7 @@ if (isset($_POST['update'])) {
         Images: <input type="file" name="img">
         <br>
         <input type="submit" name="update" value="Update Product">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
     </form>
 
 </body>
@@ -78,13 +85,3 @@ if (isset($_POST['update'])) {
 </html>
 
 <?php mysqli_close($connection); ?>
-
-<!-- $query = "UPDATE customers SET password = \'123\' WHERE customers.customer_id = '{$_GET['user_id']}'";
-
-$result = mysqli_query($connection, $query);
-
-if ($result) {
-    header('Location: user_profile.php?message=user_edited');
-} else {
-    header('Location: user_profile.php?error=user_edit_failed');
-} -->
