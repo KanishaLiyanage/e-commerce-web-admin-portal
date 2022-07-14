@@ -25,9 +25,9 @@ if ($products) {
         $product_list .= "<td> {$product['product_brand']} </td>";
         $product_list .= "<td> {$product['product_name']} </td>";
         $product_list .= "<td> {$product['price']} </td>";
-        $product_list .= "<td> {$product['product_description']} </td>";
+        //$product_list .= "<td> {$product['product_description']} </td>";
         $product_list .= "<td> {$product['qty']} </td>";
-        $product_list .= "<td> {$product['product_img']} </td>";
+        //$product_list .= "<td> {$product['product_img']} </td>";
         $product_list .= "<td> {$product['purchases']} </td>";
         $product_list .= "<td> {$product['ratings']} </td>";
         $product_list .= "<td> <a href=\"item.php?item_id={$_GET['product_id']}&item_brand={$_GET['product_brand']}&item_name={$_GET['product_name']}\"> go to this product </a> </td>";
@@ -56,16 +56,16 @@ if ($products) {
     <a href="add_items.php">add items</a>
 
     <hr>
-
-    <table>
+    <center>
+    <table border="1" cellpadding="20" cellspacing="0">
         <tr>
             <th>Product ID</th>
             <th>Product Brand</th>
             <th>Product Name</th>
             <th>Price</th>
-            <th>Description</th>
+            <!-- <th>Description</th> -->
             <th>Quantity</th>
-            <th>Image</th>
+            <!-- <th>Image</th> -->
             <th>Purchases</th>
             <th>Ratings</th>
             <th>Modify Product</th>
@@ -75,6 +75,7 @@ if ($products) {
             <?php echo $product_list; ?>
         </tr>
     </table>
+    </center>
 
 </body>
 

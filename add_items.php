@@ -23,6 +23,11 @@ if (isset($_POST['submit'])) {
     $query = "INSERT INTO products(product_brand, product_name, price, product_description, qty, product_img, purchases, ratings) VALUES ('{$pbrand}', '{$pname}','{$price}','{$pdesc}','{$pqty}','{$pimg}','{$ppurchases}','{$pratings}')";
 
     $result = mysqli_query($connection, $query);
+
+    if($result){
+        echo "Item Added!";
+    }
+
 }
 
 ?>
@@ -38,6 +43,8 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+    <center>
+
     <h1>Add Items</h1>
 
     <form action="add_items.php" method="POST">
@@ -58,6 +65,8 @@ if (isset($_POST['submit'])) {
         <input type="submit" name="submit" value="Add Product">
 
     </form>
+
+    </center>
 
 </body>
 

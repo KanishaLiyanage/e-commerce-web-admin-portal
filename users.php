@@ -6,8 +6,7 @@
 
 if (!isset($_SESSION['id'])) {
     header('Location: login.php');
-} else {
-}
+} 
 
 $user_list = "";
 $query = "SELECT customer_id, username,email,last_login FROM customers WHERE is_deleted = 0 ORDER BY customer_id";
@@ -43,8 +42,9 @@ if ($users) {
 
 <body>
     <main>
+        <center>
         <h1>Users List</h1>
-        <table class="usersTable">
+        <table class="usersTable" border="1" cellpadding="20" cellspacing="0">
             <tr>
                 <th>Customer ID</th>
                 <th>Customer Name</th>
@@ -55,6 +55,7 @@ if ($users) {
             </tr>
             <?php echo $user_list; ?>
         </table>
+        </center>
     </main>
 </body>
 
