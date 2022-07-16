@@ -31,7 +31,7 @@
                     $orderTable .= "<td>" . $record['product_id'] . "</td>";
                     $orderTable .= "<td>" . $record['created_time'] . "</td>";
                     $orderTable .= "<td>" . $record['order_qty'] . "</td>";
-                    $orderTable .= "<td>" . $record['order_price'] . "</td>";
+                    $orderTable .= "<td>" . "$". $record['order_price'] . "</td>";
                     $orderTable .= "</tr>";
         
             }
