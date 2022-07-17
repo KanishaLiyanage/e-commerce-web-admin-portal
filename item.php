@@ -48,7 +48,7 @@
             <p>Product Price: <?php echo $record['price'] ?></p>
             <p>Description: <?php echo $record['product_description'] ?></p>
             <p>Availability: <?php echo $record['qty'] ?></p>
-            <p>Image: <?php echo $record['product_img'] ?></p>
+            <img src="assets/uploads/<?=$record['product_img']?>" width="600px" height="400px">
             <p>Purchases: <?php echo $record['purchases'] ?></p>
             <p>Ratings: <?php echo $record['ratings'] ?></p>
             <p>Deleted or not: <?php echo $record['is_deleted'] ?></p>
