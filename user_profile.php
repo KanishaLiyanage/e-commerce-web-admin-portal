@@ -30,7 +30,7 @@ if (!isset($_GET['user_id'])) {
     <?php
 
     $query = "SELECT customer_id, username, email, mobile_number, address, postal_code, city, province, country, image, last_login
-        FROM customers WHERE customer_id = '{$_GET['user_id']}' LIMIT 1";
+              FROM customers WHERE customer_id = '{$_GET['user_id']}' LIMIT 1";
 
     $result = mysqli_query($connection, $query);
 
@@ -42,8 +42,8 @@ if (!isset($_GET['user_id'])) {
         ?>
 
             <h1><?php echo $record['username'] ?></h1>
-            <div class="uImg"><img src="#"></div>
-
+            <div><img class="uImg" src="../e-commerce-website/assets/uploads/<?=$record['image']?>"></div>
+            
             <div class="itemInfo">
 
                 <p>Customer ID: <?php echo $record['customer_id'] ?></p>

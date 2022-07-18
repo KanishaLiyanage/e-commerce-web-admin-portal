@@ -2,17 +2,30 @@
 <?php require_once('connections/dbconnetion.php'); ?>
 <?php require_once('components/header.php'); ?>
 
-<?php if (!isset($_SESSION['id'])) {
+<?php
+
+$id = " ";
+
+if (!isset($_SESSION['id'])) {
     header("Location: login.php");
 } else {
     if (isset($_GET['item_id'])) {
-        echo "item ID Passed!";
+        $id = $_GET['item_id'];
+        echo "Item ID Passed!: ".$id."<br>";
     } else {
         echo "Error!";
     }
 }
 
+?>
 
+<?php
+    if (isset($_POST['editImage'])) {
+        $itmID = $_POST['itemID'];
+        header("Location: editItemImage.php?item_id={$itmID}");
+    }else{
+        echo "passing failed!";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,11 +53,16 @@
 
         <?php
 
-        while ($record = mysqli_fetch_array($result)) { ?>
-
+        while ($record = mysqli_fetch_array($result)) { 
+            
+            $p_id = $record['product_id'];
+            
+            ?>
+            <?php echo "Item ID Passed!: ".$p_id; ?>
             <img class="itemImage" src="assets/uploads/<?=$record['product_img']?>">
-            <form method="post">
+            <form action="item.php" method="post">
                 <input type="submit" name="editImage" value="Edit Image" class="button1 button2"/>
+                <input type="hidden" name="itemID" value="<?php echo $id ?>">
             </form>
             <p>Product ID: <?php echo $record['product_id'] ?></p>
             <p>Product Brand: <?php echo $record['product_brand'] ?></p>
@@ -61,10 +79,6 @@
 
             if (isset($_POST['editButton'])) {
                 header("Location: components/edit_item.php?item_id={$_GET['item_id']}");
-            }
-
-            if (isset($_POST['editImage'])) {
-                header("Location: components/editItemImage.php?item_id={$_GET['item_id']}");
             }
 
             ?>

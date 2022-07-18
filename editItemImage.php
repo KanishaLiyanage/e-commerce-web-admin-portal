@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once('../connections/dbconnetion.php');
-require_once('../components/header.php');
+require_once('connections/dbconnetion.php');
+require_once('components/header.php');
 
 ?>
 
@@ -14,10 +14,10 @@ if (!isset($_SESSION['id'])) {
     header('Location: login.php?error=session_id_passing_failed!');
 } else {
     if (isset($_GET['item_id'])) {
-        echo "Item ID Passed! ".$_GET['item_id'];
         $id = $_GET['item_id'];
+        echo "Item ID Passed!: ".$id;
     } else {
-        echo "Error occured in passing item id!";
+        echo "Error occured in passing item id! <br>";
     }
 }
 
@@ -26,6 +26,8 @@ if (!isset($_SESSION['id'])) {
 <?php
 
 if (isset($_POST['update']) && isset($_FILES['image'])) {
+
+    $itmID = $_POST['itemID'];
 
     $image_name = $_FILES['image']['name'];
     $image_size = $_FILES['image']['size'];
@@ -48,17 +50,19 @@ if (isset($_POST['update']) && isset($_FILES['image'])) {
             if(in_array($img_ex_lc, $allowed_extensions)){
 
                 $new_img_name = uniqid("PRODUCT_IMG-", true) . "." . $img_ex_lc;
-                $img_upload_path = '../assets/uploads/' . $new_img_name;
+                $img_upload_path = 'assets/uploads/' . $new_img_name;
+
+                echo $img_upload_path." "."<br>ID: ".$itmID;
 
                 move_uploaded_file($tmp_name, $img_upload_path);
             
                 $query = "UPDATE products SET product_img = '{$new_img_name}'
-                          WHERE product_id = '{$p_id}' LIMIT 1";
+                          WHERE product_id = '{$itmID}' LIMIT 1";
             
                 $result = mysqli_query($connection, $query);
             
                 if($result){
-                    header("location: ../items_list.php?item_updated=true");
+                    header("location: items_list.php?item_updated=true");
                     echo "Item Updated!";
                 }
 
@@ -89,9 +93,10 @@ if (isset($_POST['update']) && isset($_FILES['image'])) {
 
 <body>
 
-    <form action="edit_item.php" method="POST" enctype="multipart/form-data">
+    <form action="editItemImage.php" method="POST" enctype="multipart/form-data">
         Images: <input type="file" name="image" required>
         <br>
+        <input type="hidden" name="itemID" value="<?php echo $id ?>">
         <input type="submit" name="update" value="Update Image">
     </form>
 
