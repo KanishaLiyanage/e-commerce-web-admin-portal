@@ -67,10 +67,10 @@ if (!isset($_SESSION['id'])) {
             <p>Product ID: <?php echo $record['product_id'] ?></p>
             <p>Product Brand: <?php echo $record['product_brand'] ?></p>
             <p>Product Name: <?php echo $record['product_name'] ?></p>
-            <p>Product Price: <?php echo $record['price'] ?></p>
+            <p>Product Price: $<?php echo $record['price'] ?></p>
             <p>Description: <?php echo $record['product_description'] ?></p>
-            <p>Availability: <?php echo $record['qty'] ?></p>
-            <p>Purchases: <?php echo $record['purchases'] ?></p>
+            <p>Availability: <?php echo $record['qty'] ?> Units available.</p>
+            <p>Purchases: <?php echo $record['purchases'] ?> Purchases.</p>
             <p>Ratings: <?php echo $record['ratings'] ?></p>
 
             <?php if (isset($_POST['deleteButton'])) {

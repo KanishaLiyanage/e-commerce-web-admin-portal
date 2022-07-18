@@ -25,9 +25,7 @@ if ($products) {
         $product_list .= "<td> {$product['product_brand']} </td>";
         $product_list .= "<td> {$product['product_name']} </td>";
         $product_list .= "<td> {$product['price']} </td>";
-        //$product_list .= "<td> {$product['product_description']} </td>";
         $product_list .= "<td> {$product['qty']} </td>";
-        //$product_list .= "<td> {$product['product_img']} </td>";
         $product_list .= "<td> {$product['purchases']} </td>";
         $product_list .= "<td> {$product['ratings']} </td>";
         $product_list .= "<td> <a href=\"item.php?item_id={$_GET['product_id']}&item_brand={$_GET['product_brand']}&item_name={$_GET['product_name']}\"> go to this product </a> </td>";
@@ -53,7 +51,7 @@ if ($products) {
 
 <body>
     <h1>Item List</h1>
-    <a href="add_items.php">add items</a>
+    <a href="add_items.php" style="text-decoration: none; font-size: 20px;">add items+</a>
 
     <hr>
     <center>
