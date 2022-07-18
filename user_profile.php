@@ -42,7 +42,7 @@ if (!isset($_GET['user_id'])) {
         ?>
 
             <h1><?php echo $record['username'] ?></h1>
-            <div><img class="uImg" src="../e-commerce-website/assets/uploads/<?=$record['image']?>"></div>
+            <div><img class="uImg" src="../e-commerce-website/assets/uploads/profile_pics/<?=$record['image']?>"></div>
             
             <div class="itemInfo">
 
