@@ -1,3 +1,11 @@
+.itemImage{
+  width: 800px;
+  height: 800px;
+  display: block;
+  object-fit: contain;
+
+}
+
 .button {
     background-color: #4CAF50; /* Green */
     border: none;

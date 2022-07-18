@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once('connections/dbconnetion.php');
-require_once('components/header.php');
+require_once('../connections/dbconnetion.php');
+require_once('../components/header.php');
 
 ?>
 
@@ -11,13 +11,13 @@ require_once('components/header.php');
 $id = "";
 
 if (!isset($_SESSION['id'])) {
-    header('Location: login.php');
+    header('Location: login.php?error=session_id_passing_failed!');
 } else {
     if (isset($_GET['item_id'])) {
         echo "Item ID Passed! ".$_GET['item_id'];
         $id = $_GET['item_id'];
     } else {
-        echo "Error!";
+        echo "Error occured in passing item id!";
     }
 }
 
@@ -58,19 +58,19 @@ if (isset($_POST['update'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
-    <link rel="stylesheet" href="css/user_profile.css">
+    <link rel="stylesheet" href="../css/user_profile.css">
 </head>
 
 <body>
 
     <form action="edit_item.php" method="POST">
-        Brand: <input type="text" name="brand">
+        Brand: <input type="text" name="brand" required>
         <br>
-        Name: <input type="text" name="name">
+        Name: <input type="text" name="name" required>
         <br>
-        Price: <input type="text" name="price">
+        Price: <input type="text" name="price" required>
         <br>
-        Description: <input type="text" name="desc">
+        Description: <input type="text" name="desc" required>
         <br>
         Quantity: <input type="text" name="qty">
         <br>

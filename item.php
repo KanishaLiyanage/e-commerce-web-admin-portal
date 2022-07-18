@@ -42,23 +42,29 @@
 
         while ($record = mysqli_fetch_array($result)) { ?>
 
+            <img class="itemImage" src="assets/uploads/<?=$record['product_img']?>">
+            <form method="post">
+                <input type="submit" name="editImage" value="Edit Image" class="button1 button2"/>
+            </form>
             <p>Product ID: <?php echo $record['product_id'] ?></p>
             <p>Product Brand: <?php echo $record['product_brand'] ?></p>
             <p>Product Name: <?php echo $record['product_name'] ?></p>
             <p>Product Price: <?php echo $record['price'] ?></p>
             <p>Description: <?php echo $record['product_description'] ?></p>
             <p>Availability: <?php echo $record['qty'] ?></p>
-            <img src="assets/uploads/<?=$record['product_img']?>" width="600px" height="400px">
             <p>Purchases: <?php echo $record['purchases'] ?></p>
             <p>Ratings: <?php echo $record['ratings'] ?></p>
-            <p>Deleted or not: <?php echo $record['is_deleted'] ?></p>
 
             <?php if (isset($_POST['deleteButton'])) {
-                header("Location: delete_item.php?item_id={$_GET['item_id']}");
+                header("Location: components/delete_item.php?item_id={$_GET['item_id']}");
             }
 
             if (isset($_POST['editButton'])) {
-                header("Location: edit_item.php?item_id={$_GET['item_id']}");
+                header("Location: components/edit_item.php?item_id={$_GET['item_id']}");
+            }
+
+            if (isset($_POST['editImage'])) {
+                header("Location: components/editItemImage.php?item_id={$_GET['item_id']}");
             }
 
             ?>
@@ -66,7 +72,6 @@
             <form method="post">
                 <input type="submit" name="editButton" value="Edit Product" class="button1 button2" />
                 <input type="submit" name="deleteButton" value="Delete Product" class="button button3"/>
-            </form>
             </form>
 
     <?php
