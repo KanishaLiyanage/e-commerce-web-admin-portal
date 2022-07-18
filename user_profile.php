@@ -27,6 +27,8 @@ if (!isset($_GET['user_id'])) {
 
 <body>
 
+<center>
+
     <?php
 
     $query = "SELECT customer_id, username, email, mobile_number, address, postal_code, city, province, country, image, last_login
@@ -42,8 +44,8 @@ if (!isset($_GET['user_id'])) {
         ?>
 
             <h1><?php echo $record['username'] ?></h1>
-            <div><img class="uImg" src="../e-commerce-website/assets/uploads/profile_pics/<?=$record['image']?>"></div>
-            
+            <div><img class="uImg" src="../e-commerce-website/assets/uploads/profile_pics/<?= $record['image'] ?>"></div>
+
             <div class="itemInfo">
 
                 <p>Customer ID: <?php echo $record['customer_id'] ?></p>
@@ -60,9 +62,9 @@ if (!isset($_GET['user_id'])) {
                 <?php
 
                 if (isset($_POST['deleteButton'])) {
-                    header("Location: delete_user.php?user_id={$_GET['id']}");
+                    header("Location: ../e-commerce-web-admin-portal/components/delete_user.php?user_id={$_GET['id']}");
                 }
-
+                
                 if (isset($_POST['editButton'])) {
                     header("Location: edit_user.php?user_id={$_GET['id']}");
                 }
@@ -81,6 +83,8 @@ if (!isset($_GET['user_id'])) {
     }
 
     ?>
+
+</center>
 
 </body>
 
